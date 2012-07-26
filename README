@@ -1,0 +1,8 @@
+INSTRUCTIONS:
+
+Create Tasks with Done__c = false and Call_Type__c filled in and go to the VF page: '/apex/CallList'
+
+
+I tried to keep the code footprint as small and tidy as possible.
+
+I am sorry I didn't have the time to upload a youtube video.
