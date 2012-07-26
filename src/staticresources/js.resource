@@ -37,48 +37,6 @@
     }
   });
 
-  $("#submit").live("tap", function(data){
-  	var taskId = $('.ui-btn-hover-c #taskId',data.prevPage).text();
-  	var contactName = $('.ui-btn-hover-c #contactName',data.prevPage).text();
-  	//var contactAccountName = $('.ui-btn-hover-c #contactAccountName',data.prevPage).text();
-  	var contactPhone = $('.ui-btn-hover-c #contactPhone',data.prevPage).text();
-  	var taskDescription = $('.ui-btn-hover-c #taskDescription',data.prevPage).text();
-  	var taskCreatedDate = $('.ui-btn-hover-c #taskCreatedDate',data.prevPage).text();
-    $('#page5contactName').text(contactName);
-    //$('#page5contactAccountName').text(contactAccountName);
-    $('#page5contactPhone').text(contactPhone);
-    $('#page5taskDescription').text(taskDescription);
-    $('#page5taskCreatedDate').text(taskCreatedDate);
-
-    console.log(taskId);
-  });
-
-  /*$("#page5").live('pageshow', function(e, data) {
-
-  	var taskId = $('.ui-btn-hover-c #taskId',data.prevPage).text();
-  	var contactName = $('.ui-btn-hover-c #contactName',data.prevPage).text();
-  	//var contactAccountName = $('.ui-btn-hover-c #contactAccountName',data.prevPage).text();
-  	var contactPhone = $('.ui-btn-hover-c #contactPhone',data.prevPage).text();
-  	var taskDescription = $('.ui-btn-hover-c #taskDescription',data.prevPage).text();
-  	var taskCreatedDate = $('.ui-btn-hover-c #taskCreatedDate',data.prevPage).text();
-    $('#page5contactName').text(contactName);
-    //$('#page5contactAccountName').text(contactAccountName);
-    $('#page5contactPhone').text(contactPhone);
-    $('#page5taskDescription').text(taskDescription);
-    $('#page5taskCreatedDate').text(taskCreatedDate);
-
-    console.log(taskId);
-
-
-    // Grab the id of the page that's showing, and select it on the Tab Bar on the page
-    var tabBar, id = $(e.target).attr('id');
-
-    tabBar = $.mobile.activePage.find(':jqmData(role="tabbar")');
-    if(tabBar.length) {
-      tabBar.tabbar('setActive', '#' + id);
-    }
-  });*/
-
 var attachEvents = function() {
 	var hoverDelay = $.mobile.buttonMarkup.hoverDelay, hov, foc;
 

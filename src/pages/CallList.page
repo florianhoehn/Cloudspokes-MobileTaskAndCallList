@@ -10,16 +10,16 @@
 
 
     <!-- Incoming -->
-    <div data-role="page" id="page1">
+    <div data-role="page" id="incomingPage">
         <div data-role="content" style="padding: 15px">
 
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Incoming
                 </li>
-                <apex:repeat id="list" value="{!incomingCallTypeTasks}" var="task">
+                <apex:repeat value="{!incomingCallTypeTasks}" var="task">
                     <li data-theme="c">
-                        <a id="submit" href="#page5" data-transition="slide">
+                        <a id="submit" href="#contactPage" data-transition="slide">
                             {!task.who.Name}
                             <span class="ui-li-count">
                                 <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
@@ -28,9 +28,10 @@
                             </span>
                             <div style="display:none">
                                 <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
                                 <span id="contactName">{!task.who.Name}</span>
-                                <!--<span id="contactAccountName">{!task.who.Account.Name}</span>-->
                                 <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
                                 <span id="taskDescription">{!task.Description}</span>
                                 <span id="taskCreatedDate">{!task.CreatedDate}</span>
                             </div>
@@ -42,22 +43,22 @@
         <div data-role="tabbar" data-iconpos="top" data-theme="b">
             <ul>
                 <li>
-                    <a href="#page1" data-theme="" data-icon="arrow-d">
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
                         Incoming
                     </a>
                 </li>
                 <li>
-                    <a href="#page2" data-theme="" data-icon="arrow-u">
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
                         Outgoing
                     </a>
                 </li>
                 <li>
-                    <a href="#page3" data-theme="" data-icon="info">
+                    <a href="#pendingPage" data-theme="" data-icon="info">
                         Pending
                     </a>
                 </li>
                 <li>
-                    <a href="#page4" data-theme="" data-icon="search">
+                    <a href="#allPage" data-theme="" data-icon="search">
                         All
                     </a>
                 </li>
@@ -65,38 +66,54 @@
         </div>
     </div>
     <!-- Outgoing -->
-    <div data-role="page" id="page2">
+    <div data-role="page" id="outgoingPage">
         <div data-role="content" style="padding: 15px">
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Outgoing
                 </li>
-                <li data-theme="c">
-                    <a href="#" data-transition="slide">
-                        Button
-                    </a>
-                </li>
+                <apex:repeat value="{!outgoingCallTypeTasks}" var="task">
+                    <li data-theme="c">
+                        <a id="submit" href="#contactPage" data-transition="slide">
+                            {!task.who.Name}
+                            <span class="ui-li-count">
+                                <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
+                                    <apex:param value="{!task.CreatedDate}" />
+                                </apex:outputText>
+                            </span>
+                            <div style="display:none">
+                                <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
+                                <span id="contactName">{!task.who.Name}</span>
+                                <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
+                                <span id="taskDescription">{!task.Description}</span>
+                                <span id="taskCreatedDate">{!task.CreatedDate}</span>
+                            </div>
+                        </a>
+                    </li>
+                </apex:repeat>
             </ul>
         </div>
         <div data-role="tabbar" data-iconpos="top" data-theme="b">
             <ul>
                 <li>
-                    <a href="#page1" data-theme="" data-icon="arrow-d">
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
                         Incoming
                     </a>
                 </li>
                 <li>
-                    <a href="#page2" data-theme="" data-icon="arrow-u">
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
                         Outgoing
                     </a>
                 </li>
                 <li>
-                    <a href="#page3" data-theme="" data-icon="info">
+                    <a href="#pendingPage" data-theme="" data-icon="info">
                         Pending
                     </a>
                 </li>
                 <li>
-                    <a href="#page4" data-theme="" data-icon="search">
+                    <a href="#allPage" data-theme="" data-icon="search">
                         All
                     </a>
                 </li>
@@ -104,38 +121,54 @@
         </div>
     </div>
     <!-- Pending -->
-    <div data-role="page" id="page3">
+    <div data-role="page" id="pendingPage">
         <div data-role="content" style="padding: 15px">
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Pending
                 </li>
-                <li data-theme="c">
-                    <a href="#" data-transition="slide">
-                        Button
-                    </a>
-                </li>
+                <apex:repeat value="{!pendingCallTypeTasks}" var="task">
+                    <li data-theme="c">
+                        <a id="submit" href="#contactPage" data-transition="slide">
+                            {!task.who.Name}
+                            <span class="ui-li-count">
+                                <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
+                                    <apex:param value="{!task.CreatedDate}" />
+                                </apex:outputText>
+                            </span>
+                            <div style="display:none">
+                                <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
+                                <span id="contactName">{!task.who.Name}</span>
+                                <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
+                                <span id="taskDescription">{!task.Description}</span>
+                                <span id="taskCreatedDate">{!task.CreatedDate}</span>
+                            </div>
+                        </a>
+                    </li>
+                </apex:repeat>
             </ul>
         </div>
         <div data-role="tabbar" data-iconpos="top" data-theme="b">
             <ul>
                 <li>
-                    <a href="#page1" data-theme="" data-icon="arrow-d">
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
                         Incoming
                     </a>
                 </li>
                 <li>
-                    <a href="#page2" data-theme="" data-icon="arrow-u">
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
                         Outgoing
                     </a>
                 </li>
                 <li>
-                    <a href="#page3" data-theme="" data-icon="info">
+                    <a href="#pendingPage" data-theme="" data-icon="info">
                         Pending
                     </a>
                 </li>
                 <li>
-                    <a href="#page4" data-theme="" data-icon="search">
+                    <a href="#allPage" data-theme="" data-icon="search">
                         All
                     </a>
                 </li>
@@ -143,58 +176,106 @@
         </div>
     </div>
     <!-- All -->
-    <div data-role="page" id="page4">
+    <div data-role="page" id="allPage">
         <div data-role="content" style="padding: 15px">
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Incoming
                 </li>
-                <li data-theme="c">
-                    <a href="#" data-transition="slide">
-                        Button
-                    </a>
-                </li>
+                <apex:repeat value="{!incomingCallTypeTasks}" var="task">
+                    <li data-theme="c">
+                        <a id="submit" href="#contactPage" data-transition="slide">
+                            {!task.who.Name}
+                            <span class="ui-li-count">
+                                <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
+                                    <apex:param value="{!task.CreatedDate}" />
+                                </apex:outputText>
+                            </span>
+                            <div style="display:none">
+                                <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
+                                <span id="contactName">{!task.who.Name}</span>
+                                <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
+                                <span id="taskDescription">{!task.Description}</span>
+                                <span id="taskCreatedDate">{!task.CreatedDate}</span>
+                            </div>
+                        </a>
+                    </li>
+                </apex:repeat>
             </ul>
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Outgoing
                 </li>
-                <li data-theme="c">
-                    <a href="#" data-transition="slide">
-                        Button
-                    </a>
-                </li>
+                <apex:repeat value="{!outgoingCallTypeTasks}" var="task">
+                    <li data-theme="c">
+                        <a id="submit" href="#contactPage" data-transition="slide">
+                            {!task.who.Name}
+                            <span class="ui-li-count">
+                                <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
+                                    <apex:param value="{!task.CreatedDate}" />
+                                </apex:outputText>
+                            </span>
+                            <div style="display:none">
+                                <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
+                                <span id="contactName">{!task.who.Name}</span>
+                                <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
+                                <span id="taskDescription">{!task.Description}</span>
+                                <span id="taskCreatedDate">{!task.CreatedDate}</span>
+                            </div>
+                        </a>
+                    </li>
+                </apex:repeat>
             </ul>
-            <ul data-role="listview" data-divider-theme="b" data-inset="false">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-role="list-divider" role="heading">
                     Pending
                 </li>
-                <li data-theme="c">
-                    <a href="#" data-transition="slide">
-                        Button
-                    </a>
-                </li>
+                <apex:repeat value="{!pendingCallTypeTasks}" var="task">
+                    <li data-theme="c">
+                        <a id="submit" href="#contactPage" data-transition="slide">
+                            {!task.who.Name}
+                            <span class="ui-li-count">
+                                <apex:outputText value="{0,date,MM/dd '@' HH:mm}">
+                                    <apex:param value="{!task.CreatedDate}" />
+                                </apex:outputText>
+                            </span>
+                            <div style="display:none">
+                                <span id="taskId">{!task.id}</span>
+                                <span id="contactId">{!task.whoid}</span>
+                                <span id="contactName">{!task.who.Name}</span>
+                                <span id="contactPhone">{!task.who.Phone}</span>
+                                <span id="taskSubject">{!task.Subject}</span>
+                                <span id="taskDescription">{!task.Description}</span>
+                                <span id="taskCreatedDate">{!task.CreatedDate}</span>
+                            </div>
+                        </a>
+                    </li>
+                </apex:repeat>
             </ul>
         </div>
         <div data-role="tabbar" data-iconpos="top" data-theme="b">
             <ul>
                 <li>
-                    <a href="#page1" data-theme="" data-icon="arrow-d">
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
                         Incoming
                     </a>
                 </li>
                 <li>
-                    <a href="#page2" data-theme="" data-icon="arrow-u">
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
                         Outgoing
                     </a>
                 </li>
                 <li>
-                    <a href="#page3" data-theme="" data-icon="info">
+                    <a href="#pendingPage" data-theme="" data-icon="info">
                         Pending
                     </a>
                 </li>
                 <li>
-                    <a href="#page4" data-theme="" data-icon="search">
+                    <a href="#allPage" data-theme="" data-icon="search">
                         All
                     </a>
                 </li>
@@ -202,7 +283,7 @@
         </div>
     </div>
     <!-- Contact Details -->
-    <div data-role="page" id="page5">
+    <div data-role="page" id="contactPage">
         <div data-role="content" style="padding: 15px">
         	<div>
                 <p style="text-align: center;">
@@ -210,21 +291,21 @@
                         <br />
                     </strong>
                 </p>
-                <p id="page5contactName" style="text-align: center;">
+                <p id="contactPagecontactName" style="text-align: center;">
                     <strong>
-                        Name
+
                     </strong>
                     <br />
                 </p>
-                <p id="page5contactAccountName" style="text-align: center;">
+                <p id="contactPagecontactPhone" style="text-align: center;">
                     <strong>
-                        Company Name
+
                     </strong>
                     <br />
                 </p>
-                <p id="page5contactPhone" style="text-align: center;">
+                <p id="contactPageSubject" style="text-align: center;">
                     <strong>
-                        phone number
+
                     </strong>
                     <br />
                 </p>
@@ -240,22 +321,21 @@
                     :
                     <br />
                 </p>
-                <p id="page5taskDescription" style="margin-left: 30px;">
-                    blabla bla skljfs fsjkfns,f sejklfnselknflkse selnflsjfslkeflskf s,flkneslkfnsfeslnfles
-                    lksenflksefklsjelkf
+                <p id="contactPagetaskDescription" style="margin-left: 30px;">
+
                     <br />
                 </p>
                 <p>
                     <br />
                 </p>
-                <p id="page5taskCreatedDate" style="text-align: center;">
-                    timestamp
+                <p id="contactPagetaskCreatedDate" style="text-align: center;">
+
                     <br />
                 </p>
             </div>
             <ul data-role="listview" data-divider-theme="b" data-inset="true">
                 <li data-theme="c">
-                    <a href="#page1" data-transition="slide">
+                    <a href="#followUpTaskPage" data-transition="slide">
                         Follow up task
                     </a>
                 </li>
@@ -264,22 +344,90 @@
         <div data-role="tabbar" data-iconpos="top" data-theme="b">
             <ul>
                 <li>
-                    <a href="#page1" data-theme="" data-icon="arrow-d">
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
                         Incoming
                     </a>
                 </li>
                 <li>
-                    <a href="#page2" data-theme="" data-icon="arrow-u">
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
                         Outgoing
                     </a>
                 </li>
                 <li>
-                    <a href="#page3" data-theme="" data-icon="info">
+                    <a href="#pendingPage" data-theme="" data-icon="info">
                         Pending
                     </a>
                 </li>
                 <li>
-                    <a href="#page4" data-theme="" data-icon="search">
+                    <a href="#allPage" data-theme="" data-icon="search">
+                        All
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Follow up task -->
+    <div data-role="page" id="followUpTaskPage">
+        <div data-role="content" style="padding: 15px">
+            <div>
+                <div style="display:none">
+                    <span id="followUpTaskPagecontactId"></span>
+                    <span id="followUpTaskPagetaskId"></span>
+                </div>
+                <p style="text-align: center;">
+                    <strong>
+                        &nbsp;
+                    </strong>
+                </p>
+                <p id="followUpTaskPagecontactName" style="text-align: center;">
+                    <strong>
+
+                    </strong>
+                </p>
+            </div>
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label for="followUpTaskPageActivityDate">
+                    </label>
+                    <input id="followUpTaskPageActivityDate" placeholder="{!today}" value="" type="date" />
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label for="followUpTaskPageSubject">
+                    </label>
+                    <input id="followUpTaskPageSubject" placeholder="Subject" value="" type="text" />
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label for="followUpTaskPageDescription">
+                    </label>
+                    <textarea id="followUpTaskPageDescription" placeholder="Description">
+                    </textarea>
+                </fieldset>
+            </div>
+            <input data-theme="b" value="Save" type="submit" onClick="saveFollowUptask()"/>
+        </div>
+        <div data-role="tabbar" data-iconpos="top" data-theme="b">
+            <ul>
+                <li>
+                    <a href="#incomingPage" data-theme="" data-icon="arrow-d">
+                        Incoming
+                    </a>
+                </li>
+                <li>
+                    <a href="#outgoingPage" data-theme="" data-icon="arrow-u">
+                        Outgoing
+                    </a>
+                </li>
+                <li>
+                    <a href="#pendingPage" data-theme="" data-icon="info">
+                        Pending
+                    </a>
+                </li>
+                <li>
+                    <a href="#allPage" data-theme="" data-icon="search">
                         All
                     </a>
                 </li>
@@ -287,4 +435,60 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        $("#submit").live("tap", function(data){
+            var taskId = $('.ui-btn-hover-c #taskId',data.prevPage).text();
+            var contactId = $('.ui-btn-hover-c #contactId',data.prevPage).text();
+            var contactName = $('.ui-btn-hover-c #contactName',data.prevPage).text();
+            var contactPhone = $('.ui-btn-hover-c #contactPhone',data.prevPage).text();
+            var taskSubject = $('.ui-btn-hover-c #taskSubject',data.prevPage).text();
+            var taskDescription = $('.ui-btn-hover-c #taskDescription',data.prevPage).text();
+            var taskCreatedDate = $('.ui-btn-hover-c #taskCreatedDate',data.prevPage).text();
+            $('#contactPagecontactId').text(contactId);
+            $('#contactPagecontactName').text(contactName);
+            $('#contactPagecontactPhone').text(contactPhone);
+            $('#contactPageSubject').text(taskSubject);
+            $('#contactPagetaskSubject').text(taskDescription);
+            $('#contactPagetaskDescription').text(taskDescription);
+            $('#contactPagetaskCreatedDate').text(taskCreatedDate);
+            $('#followUpTaskPagetaskId').text(taskId);
+            $('#followUpTaskPagecontactId').text(contactId);
+            $('#followUpTaskPagecontactName').text(contactName);
+        });
+
+        function Task(){
+            this.Id = null;
+            this.WhoId = null;
+            this.Subject = null;
+            this.Description = null;
+            this.ActivityDate = null;
+            this.Call_Type__c = 'Pending';
+            this.Done__c = false;
+        }
+
+        function saveFollowUptask() {
+            var doneTask = new Task();
+            doneTask.Id = $('#followUpTaskPagetaskId').text();
+            doneTask.Done__c = true;
+
+            var task = new Task();
+            task.WhoId = $('#followUpTaskPagecontactId').text();
+            task.Subject = $('#followUpTaskPageSubject').val();
+            task.ActivityDate = $('#followUpTaskPageActivityDate').val();
+            task.Description = $('#followUpTaskPageDescription').val();
+
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CallListController.saveFollowUptask}',
+                task,
+                doneTask,
+                function(result, event){
+                    if (event.status) {
+                        window.location.hash = 'incomingPage';
+                        window.location.reload(true);
+                    }
+                },
+                {escape: true}
+            );
+        }
+    </script>
 </apex:page>
